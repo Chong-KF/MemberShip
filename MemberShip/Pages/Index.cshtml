@@ -1,0 +1,39 @@
+﻿@page
+@model IndexModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    var user = UserManager.GetUserAsync(User);
+    var role = UserManager.GetRolesAsync(user.Result);
+    ViewData["Title"] = "Home page";
+}
+
+@if (SignInManager.IsSignedIn(User) && User.IsInRole(Role.Sale.ToString()))
+{
+    <div class="row justify-content-center">
+        <a class="btn btn-outline-primary" asp-area="" asp-page="/Create">New Member</a>
+    </div>
+    <br />
+    <div class="row justify-content-center">
+        <a class="btn btn-outline-primary" asp-area="" asp-page="/Approved">Approved Members</a>
+    </div>
+    <br />
+    <div class="row justify-content-center">
+        <a class="btn btn-outline-primary" asp-area="" asp-page="/Rejected">Rejected Members</a>
+    </div>
+    <br />
+    <div class="row justify-content-center">
+        <a class="btn btn-outline-primary" asp-area="" asp-page="/List">Members List</a>
+    </div>
+}
+else if (SignInManager.IsSignedIn(User) && User.IsInRole(Role.Manager.ToString()))
+{
+    <div class="row justify-content-center">
+        <a class="btn btn-outline-primary" asp-area="" asp-page="/Pending">Pending Approvals</a>
+    </div>
+    <br />
+    <div class="row justify-content-center">
+        <a class="btn btn-outline-primary" asp-area="" asp-page="/List">Members List</a>
+    </div>
+}
+

@@ -1,0 +1,73 @@
+﻿@page
+@model MemberShip.Pages.RejectedModel
+
+@{
+    ViewData["Title"] = "Rejected";
+}
+
+<h1>Rejected</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Member[0].Salutation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Member[0].FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Member[0].DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Member[0].Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Member[0].Mobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Member[0].Rejected)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Member[0].MemberShipID)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.Member[0].DateCreated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Member) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salutation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberShipID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
